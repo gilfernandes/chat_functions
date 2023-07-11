@@ -44,8 +44,8 @@ def intro_text():
 - [Wikipedia](https://www.wikipedia.org/) Content
 - Scientific publications ([pubmed](https://pubmed.ncbi.nlm.nih.gov) and [arxiv](https://arxiv.org))
 - Mathematical calculations
-- Meditation related events (Custom Tool)
 - Search engine content ([DuckDuckGo](https://duckduckgo.com/))
+- Meditation related events (Custom Tool)
     """)
         
 @st.cache_resource()

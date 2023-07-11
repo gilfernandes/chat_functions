@@ -1,8 +1,7 @@
-from langchain import LLMChain
 from langchain.utilities.duckduckgo_search import DuckDuckGoSearchAPIWrapper
 from langchain.utilities.wikipedia import WikipediaAPIWrapper
 from langchain.utilities import PubMedAPIWrapper
-from langchain import ArxivAPIWrapper, BasePromptTemplate, LLMMathChain
+from langchain import ArxivAPIWrapper, LLMMathChain
 from langchain.agents import initialize_agent, Tool
 from langchain.tools import StructuredTool
 from langchain.agents import AgentType
@@ -10,7 +9,6 @@ from langchain.chat_models import ChatOpenAI
 from langchain.agents import AgentExecutor
 from langchain.memory import ConversationBufferMemory
 
-from langchain.schema import SystemMessage
 from langchain.prompts.chat import MessagesPlaceholder
 import tools_wrappers
 from typing import Tuple, Dict
@@ -57,7 +55,7 @@ def setup_agent() -> AgentExecutor:
     arxiv = ArxivAPIWrapper()
     tools = [
         Tool(
-            name = "Search",
+            name = "Search DuckDuck Go",
             func=duckduck_search.run,
             description="useful for when you need to answer questions about current events. You should ask targeted questions"
         ),
@@ -89,7 +87,6 @@ def setup_agent() -> AgentExecutor:
     ]
     agent_kwargs, memory = setup_memory()
 
-    # return OpenAIFunctionsAgent(llm_chain=llm_chain, tools=tools, verbose=True, memory=memory)
     return initialize_agent(
         tools, 
         cfg.llm, 
